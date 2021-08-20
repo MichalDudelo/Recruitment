@@ -19,8 +19,10 @@ namespace Recruitment
                 players.ForEach(player =>
                 {
                     player.RollADiceAndMove(dice, board);
-                    Console.WriteLine(player.ReportGamePlay);
+                    Console.WriteLine(player.ReportGamePlay());
+                    
                 });
+                Console.WriteLine();
             }
             while (!board.GameFinished);
 

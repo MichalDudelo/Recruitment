@@ -8,40 +8,45 @@ namespace Recruitment
 {
     public class Board
     {
-        //assume that we have square board
-        public const int Dimension = 5;
-        public const int Finish = Dimension * Dimension;
+        public const int Dimension = 25;
+        public const int Finish = Dimension - 1;
         public const int NumberOfLadders = 5;
         public const int NumberOfSnakes = 5;
-        public Tile.Tile[]Tiles { get; set; }
+        public Tile[] Tiles { get; set; }
         public Player Winner { get; set; }
         public bool GameFinished { get; set; }
         public Board()
         {
-            Tiles = new Tile.Tile[Dimension*Dimension];
+            Tiles = new Tile[Dimension];
             GameFinished = false;
             //generate Board
             generateBoard();
-            
+
         }
         private void generateBoard()
         {
-            for (int i = 0; i <= Dimension; i++)
+            Tiles[0] = new Tile(0) { Start = true };
+            Tiles[Finish] = new Tile(Finish) { Finish = true };
+            for (int i = 1; i < Finish; i++)
             {
-                Tiles[i] =  new Tile.Tile(i, i);
-                
+                Tiles[i] = new Tile(i);
+
             }
         }
         public void MakeMove(Token playerToken, int diceRollResult)
         {
-            playerToken.MoveToken(diceRollResult);
-            if (playerToken.Position >= Finish)
+            var nextTileIndex = playerToken.Position.Index + diceRollResult;
+
+            var nextTile = Tiles.ElementAtOrDefault(nextTileIndex) ?? Tiles[Finish];
+        
+            playerToken.MoveToken(nextTile);
+            if (nextTile.Finish)
             {
                 GameFinished = true;
                 Winner = playerToken.Owner;
             }
-                
-        }   
-      
+
+        }
+
     }
 }

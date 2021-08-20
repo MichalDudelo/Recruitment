@@ -8,13 +8,13 @@ namespace Recruitment
 {
     public class Token
     {
-        public int  Position { get; set; }
+        public Tile  Position { get; set; }
         public Player Owner { get; set; }
         public Token(Player owner)
         {
-            Position = 0;
+            Position = new Tile(0) { Start = true };
             Owner = owner;
         }
-        public void MoveToken(int diceRoleResult) => Position += diceRoleResult; 
+        public void MoveToken(Tile tile) => Position = tile; 
     }
 }
