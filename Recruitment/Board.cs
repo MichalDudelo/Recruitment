@@ -8,16 +8,18 @@ namespace Recruitment
 {
     public class Board
     {
-        public const int Dimension = 25;
-        public const int Finish = Dimension - 1;
+        public int Length = 25;
+        public int Finish;
         public const int NumberOfLadders = 5;
         public const int NumberOfSnakes = 5;
         public Tile[] Tiles { get; set; }
         public Player Winner { get; set; }
         public bool GameFinished { get; set; }
-        public Board()
+        public Board(int length)
         {
-            Tiles = new Tile[Dimension];
+            Length = length;
+            Finish = Length - 1;
+            Tiles = new Tile[Length];
             GameFinished = false;
             //generate Board
             generateBoard();

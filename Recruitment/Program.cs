@@ -8,7 +8,7 @@ namespace Recruitment
         static void Main(string[] args)
         {
             var dice = new Dice();
-            var board = new Board();
+            var board = new Board(length:25);
             var players = new List<Player>()
             { new Player(name:"Player1")
             , new Player(name:"Player2")};
