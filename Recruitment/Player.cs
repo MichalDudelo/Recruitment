@@ -11,11 +11,7 @@ namespace Recruitment
         public string Name { get; init; }
         public Token Token { get; init; }
         private int diceRollResult { get; set; }
-        public string ReportGamePlay()
-        {
-            var currentPosition = Token.Position.Index - diceRollResult;
-            return @$"Player name: {Name}, start position: {(currentPosition == 0 ? "Start" : currentPosition)}, current position: {Token.Position.Index}, last roll result {diceRollResult}";
-        }
+       
         public Player(string name)
         {
             Token = new Token(owner: this);
